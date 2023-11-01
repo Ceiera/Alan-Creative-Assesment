@@ -1,7 +1,9 @@
 import { Sequelize, DataTypes } from "sequelize";
+import dotenv from "dotenv";
+dotenv.config();
 
 const sequelize = new Sequelize(
-  "postgres://postgres:fairytail71@localhost:5432/alan_creative_assesment"
+  `${process.env.DATABASE_URL}`,
 );
 
 const foodItems = sequelize.define(
