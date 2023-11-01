@@ -24,4 +24,5 @@ const foodItems = sequelize.define(
   }
 );
 
+
 export default foodItems;
