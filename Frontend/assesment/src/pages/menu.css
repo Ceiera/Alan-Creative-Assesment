@@ -1,0 +1,12 @@
+.menu{
+    min-height:100vh;
+}
+
+.left{
+    width: 70%;
+    overflow-y: auto;
+}
+
+.right{
+    width: 30%;
+}
