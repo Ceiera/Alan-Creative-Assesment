@@ -3,9 +3,11 @@ import cors from "cors";
 import Sequelize  from "sequelize";
 import foodItemsRouter from "./routes/fooditems.route.js";
 import morgan from "morgan";
+import dotenv from "dotenv";
 const app = express();
+dotenv.config()
 
-const sequelize = new Sequelize('postgres://postgres:fairytail71@localhost:5432/alan_creative_assesment')
+const sequelize = new Sequelize(`${process.env.DATABASE_URL}`)
 
 app.use(cors());
 app.use(express.json());
