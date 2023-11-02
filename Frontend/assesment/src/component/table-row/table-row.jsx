@@ -6,7 +6,7 @@ const TableRow = ({ item, index, onEdit, onDelete }) => {
   };
 
   const handleDelete = async () => {
-    const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/fooditems/${item.foodItemsId}`, {
+    const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}api/fooditems/${item.foodItemsId}`, {
       method: "DELETE",
     })
     const data = await response.json()

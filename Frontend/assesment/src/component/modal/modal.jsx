@@ -18,8 +18,10 @@ const Modals = ({ item, show, handlerClose, isEdit }) => {
     const response = await fetch(
       `${import.meta.env.VITE_BACKEND_URL}api/fooditems/`,
       {
-        method: method
-      },{
+        method: method,
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(forSubmit),
       }
     );
