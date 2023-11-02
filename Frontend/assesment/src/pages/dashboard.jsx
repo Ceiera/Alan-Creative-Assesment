@@ -10,6 +10,8 @@ const Dashboard = () => {
     loadList();
   }, []);
 
+  const [isEdit, setIsEdit] = useState(false);
+
   const loadList = async () => {
     const response = await fetch(
       `${import.meta.env.VITE_BACKEND_URL}api/fooditems`
@@ -22,21 +24,20 @@ const Dashboard = () => {
     setModalOn(false);
   };
   const handleAdd = (item) => {
-    setDataPreview(item);
+    setDataPreview({})
     setModalOn(true);
   };
 
   const handleEdit = (params) => {
+    setIsEdit(true);
     setDataPreview(params);
     setModalOn(true);
   };
 
-  const handleDelete = (item) => {};
-
   return (
     <div className="px-3 py-2 bg-body-tertiary">
       <h1>List Food Items</h1>
-      <div className="btn btn-primary mt-3">Add Food Item</div>
+      <div className="btn btn-primary mt-3" onClick={handleAdd}>Add Food Item</div>
       <div
         className="food-items-containe mt-3"
         style={{ height: "26rem", overflowY: "auto" }}
@@ -56,7 +57,7 @@ const Dashboard = () => {
             {listFoodItems.map((item, index) => {
               return (
                 <TableRow
-                key={index}
+                  key={index}
                   item={item}
                   index={index}
                   onEdit={handleEdit}
@@ -72,6 +73,7 @@ const Dashboard = () => {
         show={modalOn}
         item={dataPreview}
         handlerClose={closeModal}
+        isEdit={isEdit}
       ></Modals>
     </div>
   );

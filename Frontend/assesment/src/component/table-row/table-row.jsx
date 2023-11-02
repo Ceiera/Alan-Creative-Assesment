@@ -4,7 +4,6 @@ const TableRow = ({ item, index, onEdit, onDelete }) => {
   const handleEdit = () => {
     onEdit(item);
   };
-  const [rowItem, setRowItem] = useState(item)
 
   const handleDelete = async () => {
     const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/fooditems/${item.foodItemsId}`, {
