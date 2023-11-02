@@ -1,9 +1,15 @@
+import { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 const Modals = ({ item, show, handlerClose }) => {
+  const [edit, setEdit] = useState(false);
   const close = (e) => {
     e.preventDefault();
     handlerClose();
   };
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handlerClose();
+  }
   return (
     <Modal show={show} onHide={handlerClose}>
       <Modal.Header closeButton>

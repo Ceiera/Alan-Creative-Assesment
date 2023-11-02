@@ -1,7 +1,18 @@
-const TableRow = ({ item, index, onEdit }) => {
+import { useState } from "react";
+
+const TableRow = ({ item, index, onEdit, onDelete }) => {
   const handleEdit = () => {
     onEdit(item);
   };
+  const [rowItem, setRowItem] = useState(item)
+
+  const handleDelete = async () => {
+    const response = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/fooditems/${item.foodItemsId}`, {
+      method: "DELETE",
+    })
+    const data = await response.json()
+    onDelete()
+  }
   return (
     <tr key={index}>
       <td>{index + 1}</td>
@@ -20,7 +31,7 @@ const TableRow = ({ item, index, onEdit }) => {
         </button>
       </td>
       <td className=" text-center">
-        <button className="btn btn-danger">Delete</button>
+        <button className="btn btn-danger" onClick={handleDelete}>Delete</button>
       </td>
     </tr>
   );

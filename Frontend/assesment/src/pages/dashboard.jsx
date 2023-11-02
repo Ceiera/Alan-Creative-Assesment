@@ -7,15 +7,16 @@ const Dashboard = () => {
   const [modalOn, setModalOn] = useState(false);
   const [dataPreview, setDataPreview] = useState({});
   useEffect(() => {
-    const loadList = async () => {
-      const response = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}api/fooditems`
-      );
-      const data = await response.json();
-      setListFoodItems(data.data);
-    };
     loadList();
   }, []);
+
+  const loadList = async () => {
+    const response = await fetch(
+      `${import.meta.env.VITE_BACKEND_URL}api/fooditems`
+    );
+    const data = await response.json();
+    setListFoodItems(data.data);
+  };
 
   const closeModal = () => {
     setModalOn(false);
@@ -55,9 +56,11 @@ const Dashboard = () => {
             {listFoodItems.map((item, index) => {
               return (
                 <TableRow
+                key={index}
                   item={item}
                   index={index}
                   onEdit={handleEdit}
+                  onDelete={loadList}
                 ></TableRow>
               );
             })}
