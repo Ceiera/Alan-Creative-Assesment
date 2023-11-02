@@ -8,11 +8,12 @@ import './index.css'
 import 'bootstrap/dist/css/bootstrap.css';
 import Navbar from './component/navbar/navbar';
 import Menu from './pages/menu';
+import Dashboard from './pages/dashboard';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Navbar></Navbar>,
+    element: [<Navbar key={1}></Navbar>, <Dashboard key = {2}></Dashboard>],
   },
   {
     path: '/menu',
