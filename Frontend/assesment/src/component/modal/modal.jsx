@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 const Modals = ({ item, show, handlerClose, isEdit }) => {
-
   let forSubmit = {
     id: isEdit ? item.foodItemsId : "",
     description: isEdit ? item.description : "",
@@ -9,24 +8,24 @@ const Modals = ({ item, show, handlerClose, isEdit }) => {
     image: isEdit ? item.image : "",
   };
   const close = (e) => {
-    e.preventDefault();
     handlerClose();
   };
   const handleSubmit = async (e) => {
-    e.preventDefault();
     let method = "POST";
-    if (edit === true) {
+    if (isEdit === true) {
       method = "PUT";
     }
     const response = await fetch(
-      `${import.meta.env.VITE_BACKEND_URL}api/fooditems/${item.foodItemsId}`,
+      `${import.meta.env.VITE_BACKEND_URL}api/fooditems/`,
       {
-        method: method,
+        method: method
+      },{
         body: JSON.stringify(forSubmit),
       }
     );
     const data = await response.json();
-    close()
+    console.log(data);
+    close();
   };
 
   const handleId = (e) => {
@@ -57,11 +56,7 @@ const Modals = ({ item, show, handlerClose, isEdit }) => {
             <h5>ID</h5>
           </div>
           <div className="col-8">
-            <input
-              type="text"
-              defaultValue={forSubmit.id}
-              onKeyUp={handleId}
-            />
+            <input type="text" defaultValue={forSubmit.id} onKeyUp={handleId} />
           </div>
         </div>
         <div className="row">
@@ -69,7 +64,12 @@ const Modals = ({ item, show, handlerClose, isEdit }) => {
             <h5>Description</h5>
           </div>
           <div className="col-8">
-            <input type="text"  onKeyUp={handleDescription} defaultValue={forSubmit.description} required/>
+            <input
+              type="text"
+              onKeyUp={handleDescription}
+              defaultValue={forSubmit.description}
+              required
+            />
           </div>
         </div>
         <div className="row">
@@ -77,7 +77,12 @@ const Modals = ({ item, show, handlerClose, isEdit }) => {
             <h5>Price</h5>
           </div>
           <div className="col-8">
-            <input type="number" onKeyUp={handlePrice} defaultValue={forSubmit.price} required />
+            <input
+              type="number"
+              onKeyUp={handlePrice}
+              defaultValue={forSubmit.price}
+              required
+            />
           </div>
         </div>
         <div className="row">
@@ -85,7 +90,12 @@ const Modals = ({ item, show, handlerClose, isEdit }) => {
             <h5>Image</h5>
           </div>
           <div className="col-8">
-            <input type="text" onKeyUp={handleImage} defaultValue={forSubmit.image} required/>
+            <input
+              type="text"
+              onKeyUp={handleImage}
+              defaultValue={forSubmit.image}
+              required
+            />
           </div>
         </div>
       </Modal.Body>

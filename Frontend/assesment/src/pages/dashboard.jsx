@@ -24,6 +24,7 @@ const Dashboard = () => {
     setModalOn(false);
   };
   const handleAdd = (item) => {
+    setIsEdit(false);
     setDataPreview({})
     setModalOn(true);
   };
@@ -47,6 +48,7 @@ const Dashboard = () => {
             <tr>
               <td scope="col">No.</td>
               <td scope="col">Description</td>
+              <td scope="col">Price</td>
               <td scope="col">Image</td>
               <td scope="col" className="text-center" colSpan={"2"}>
                 Action
